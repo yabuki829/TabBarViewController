@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 public struct TabColor {
     var textColor:UIColor
     var backgroundColor :UIColor
@@ -10,6 +9,7 @@ public struct TabContent{
     let view:UIView
     let height:CGFloat
 }
+
 
 
 open class TabbarViewController:UIViewController {
@@ -27,8 +27,8 @@ open class TabbarViewController:UIViewController {
     private var iconList = [String]()
     // menucellを押すとselectedcellを変更するためにアクセスできるように宣言してる
     private var contentCell = TabContentViewCollectionCell()
-    public var selectedText = TabColor(textColor: .white , backgroundColor: .link)
-    public var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
+    open var selectedText = TabColor(textColor: .white , backgroundColor: .link)
+    open var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
     private var views = [UIView]()
     private var contents = [TabContent]()
     //タブにiconが設定されてるかどうか
@@ -57,7 +57,7 @@ open class TabbarViewController:UIViewController {
         collectionView.dataSource = self
     }
 
-    public func setting(_ tabindex:Int ,titleList: [String]){
+    open func setting(_ tabindex:Int ,titleList: [String]){
         self.tabIndex = tabindex
         if tabindex > addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
@@ -68,7 +68,7 @@ open class TabbarViewController:UIViewController {
         self.titleList = titleList
     }
     ///　iconListはuiimageのsystemnameを設定してください
-    public func setting(_ tabindex:Int ,iconList: [String]){
+    open func setting(_ tabindex:Int ,iconList: [String]){
         self.tabIndex = tabindex
         if tabindex > addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
@@ -78,10 +78,10 @@ open class TabbarViewController:UIViewController {
         
         
     }
-    public func addViews() -> [UIView] {
+    open func addViews() -> [UIView] {
         return views
     }
-    public func addContentViews() -> [TabContent] {
+    open func addContentViews() -> [TabContent] {
         return [TabContent]()
     }
     
