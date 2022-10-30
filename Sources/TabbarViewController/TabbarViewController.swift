@@ -27,8 +27,8 @@ open class TabbarViewController:UIViewController {
     private var iconList = [String]()
     // menucellを押すとselectedcellを変更するためにアクセスできるように宣言してる
     private var contentCell = TabContentViewCollectionCell()
-    var selectedText = TabColor(textColor: .white , backgroundColor: .link)
-    var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
+    open var selectedText = TabColor(textColor: .white , backgroundColor: .link)
+    open var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
     private var views = [UIView]()
     private var contents = [TabContent]()
     //タブにiconが設定されてるかどうか
@@ -57,7 +57,7 @@ open class TabbarViewController:UIViewController {
         collectionView.dataSource = self
     }
 
-    func setting(_ tabindex:Int ,titleList: [String]){
+    open func setting(_ tabindex:Int ,titleList: [String]){
         self.tabIndex = tabindex
         if tabindex > addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
@@ -68,7 +68,7 @@ open class TabbarViewController:UIViewController {
         self.titleList = titleList
     }
     ///　iconListはuiimageのsystemnameを設定してください
-    func setting(_ tabindex:Int ,iconList: [String]){
+    open func setting(_ tabindex:Int ,iconList: [String]){
         self.tabIndex = tabindex
         if tabindex > addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
@@ -78,10 +78,10 @@ open class TabbarViewController:UIViewController {
         
         
     }
-    func addViews() -> [UIView] {
+    open func addViews() -> [UIView] {
         return views
     }
-    func addContentViews() -> [TabContent] {
+    open func addContentViews() -> [TabContent] {
         return [TabContent]()
     }
     
@@ -89,11 +89,11 @@ open class TabbarViewController:UIViewController {
 
     
     ///タブバーの高さ。デフォルトは30
-    func tabHeight() -> CGFloat{
+    open func tabHeight() -> CGFloat{
         return 30
     }
     ///タブバーのコンテンツの高さ。デフォルトは200
-    func contentViewHeight() -> CGFloat{
+    open func contentViewHeight() -> CGFloat{
         return 200
     }
 }
