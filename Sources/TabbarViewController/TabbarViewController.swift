@@ -2,17 +2,17 @@ import Foundation
 import UIKit
 
 
-struct TabColor {
+public struct TabColor {
     var textColor:UIColor
     var backgroundColor :UIColor
 }
-struct TabContent{
+public struct TabContent{
     let view:UIView
     let height:CGFloat
 }
 
 
-class TabbarViewController:UIViewController {
+public class TabbarViewController:UIViewController {
     
     private let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +34,7 @@ class TabbarViewController:UIViewController {
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
    
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(collectionView)
