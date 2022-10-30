@@ -34,7 +34,7 @@ open class TabbarViewController:UIViewController {
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
    
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(collectionView)
