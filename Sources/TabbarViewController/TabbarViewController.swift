@@ -8,6 +8,10 @@ public struct TabColor {
 public struct TabContent{
     public let view:UIView
     public let height:CGFloat
+    init(view:UIView,height:CGFloat){
+        self.view = view
+        self.height = height
+    }
 }
 
 
