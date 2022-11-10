@@ -6,8 +6,9 @@ public struct TabColor {
     public var backgroundColor :UIColor
 }
 public struct TabContent{
-    public let view:UIView
-    public let height:CGFloat
+    let view:UIView
+    let height:CGFloat
+    
     public init(view:UIView,height:CGFloat){
         self.view = view
         self.height = height
