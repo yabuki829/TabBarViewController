@@ -12,7 +12,7 @@ public struct TabContent{
 
 
 
-open class TabbarViewController:UIViewController {
+public class TabbarViewController:UIViewController {
     
     private let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
