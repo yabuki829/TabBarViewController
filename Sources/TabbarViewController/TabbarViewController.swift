@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 public struct TabColor {
-    var textColor:UIColor
-    var backgroundColor :UIColor
+    public var textColor:UIColor
+    public var backgroundColor :UIColor
 }
 public struct TabContent{
-    let view:UIView
-    let height:CGFloat
+    public let view:UIView
+    public let height:CGFloat
 }
 
 
