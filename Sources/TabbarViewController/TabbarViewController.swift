@@ -12,7 +12,7 @@ public struct TabContent{
 
 
 
-public class TabbarViewController:UIViewController {
+open class UITabbarViewController:UIViewController {
     
     private let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -98,7 +98,7 @@ public class TabbarViewController:UIViewController {
     }
 }
 
-extension TabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       if indexPath.row == tabIndex {
@@ -170,7 +170,7 @@ extension TabbarViewController:UICollectionViewDelegate,UICollectionViewDataSour
 
 }
 
-extension TabbarViewController:reloadDelegate{
+extension UITabbarViewController:reloadDelegate{
     
     internal func reload(indexPath: IndexPath) {
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
