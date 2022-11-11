@@ -86,7 +86,7 @@ open class UITabbarViewController:UIViewController {
     open func addViews() -> [UIView] {
         return views
     }
-    open func addContentViews() -> [TabContent] {
+    public func addContentViews() -> [TabContent] {
         return [TabContent]()
     }
     
