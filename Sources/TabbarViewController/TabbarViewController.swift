@@ -76,7 +76,7 @@ open class UITabbarViewController:UIViewController {
     ///　iconListはuiimageのsystemnameを設定してください
     open func setting(_ tabindex:Int ,iconList: [String]){
         self.tabIndex = tabindex
-        if tabindex >= addContentViews().count || tabindex == views.count-1{
+        if tabindex > addContentViews().count {
             print("changed the tabIndex to 0")
             self.tabIndex = 0
         }
