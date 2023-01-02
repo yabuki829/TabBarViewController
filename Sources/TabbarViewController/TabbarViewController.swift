@@ -65,7 +65,7 @@ open class UITabbarViewController:UIViewController {
     open func setting(_ tabindex:Int ,titleList: [String]){
         self.tabIndex = tabindex
         // Tableviewのコンテントの数とtabの数
-        if tabindex >= addContentViews().count || tabindex == views.count-1{
+        if tabindex >= addContentViews().count{
             print("changed the tabIndex to 0")
             self.tabIndex = 0
         }
