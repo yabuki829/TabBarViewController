@@ -64,7 +64,8 @@ open class UITabbarViewController:UIViewController {
 
     open func setting(_ tabindex:Int ,titleList: [String]){
         self.tabIndex = tabindex
-        if tabindex > addContentViews().count || tabindex == views.count-1{
+        // Tableviewのコンテントの数とtabの数
+        if tabindex >= addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
             self.tabIndex = 0
         }
@@ -75,12 +76,11 @@ open class UITabbarViewController:UIViewController {
     ///　iconListはuiimageのsystemnameを設定してください
     open func setting(_ tabindex:Int ,iconList: [String]){
         self.tabIndex = tabindex
-        if tabindex > addContentViews().count || tabindex == views.count-1{
+        if tabindex >= addContentViews().count || tabindex == views.count-1{
             print("changed the tabIndex to 0")
             self.tabIndex = 0
         }
         self.iconList = iconList
-        
         
     }
     open func addViews() -> [UIView] {
