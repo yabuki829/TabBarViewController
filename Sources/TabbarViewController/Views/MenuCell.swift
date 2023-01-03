@@ -85,7 +85,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
             
-            var value = 18
+            var value = 20
     
             if isAlphanumeric(str: titleList[indexPath.row]) {
                 value = 13
