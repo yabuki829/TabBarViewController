@@ -85,9 +85,14 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
             
-            var value = 16
+            var value = 18
+    
             if isAlphanumeric(str: titleList[indexPath.row]) {
                 value = 13
+            }
+            else {
+                //文字数が15文字超えたら, valueを15で計算する
+                if titleList[indexPath.row].count > 15{ value = 15}
             }
 
             let width = CGFloat(value * titleList[indexPath.row].count)
