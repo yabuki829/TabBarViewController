@@ -27,8 +27,6 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
          let view = UIView()
          return view
      }()
-    abcdefg
-    アイウエオ書き
     lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecitonview = UICollectionView(frame: .zero, collectionViewLayout:layout )
