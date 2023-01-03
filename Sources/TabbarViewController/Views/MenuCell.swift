@@ -29,6 +29,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
      }()
     lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collecitonview = UICollectionView(frame: .zero, collectionViewLayout:layout )
         collecitonview.dataSource = self
         collecitonview.delegate = self
@@ -84,9 +85,9 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
             
-            var value = 20
+            var value = 16
             if isAlphanumeric(str: titleList[indexPath.row]) {
-                value = 14
+                value = 13
             }
 
             let width = CGFloat(value * titleList[indexPath.row].count)
