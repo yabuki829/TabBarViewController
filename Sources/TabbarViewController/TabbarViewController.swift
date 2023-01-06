@@ -205,10 +205,10 @@ enum tab {
 }
 
 public struct TabTag {
-    public let title: String
-    public let isButton: Bool
+    private let title: String
+    private let isButton: Bool
     
-    init(title:String,isButton: Bool = false) {
+    public init(title:String,isButton: Bool = false) {
         self.title = title
         self.isButton = isButton
     }
