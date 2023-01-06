@@ -189,12 +189,17 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
 
 extension UITabbarViewController:reloadDelegate{
     internal func tapped(indexPath: IndexPath) {
-        
+        tappedTabButton(indexPath: indexPath)
     }
     
     
     internal func reload(indexPath: IndexPath) {
-        contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
+        if tabs[indexPath.row].isButton {
+            
+        }
+        else{
+            contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
+        }
     }
 }
 
