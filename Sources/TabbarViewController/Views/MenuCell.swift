@@ -109,7 +109,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
                 if self.tabs[indexPath.row].title.count > 15{ value = 15}
             }
 
-            let width = CGFloat(value * self.tabs[indexPath.row].title.count)
+            var width = CGFloat(value * self.tabs[indexPath.row].title.count)
             // 最低でもheightの大きさにする
             if width  < frame.height {
                 width = frame.height
