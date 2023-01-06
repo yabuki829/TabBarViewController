@@ -205,8 +205,8 @@ enum tab {
 }
 
 public struct TabTag {
-    private let title: String
-    private let isButton: Bool
+    let title: String
+    let isButton: Bool
     
     public init(title:String,isButton: Bool = false) {
         self.title = title
