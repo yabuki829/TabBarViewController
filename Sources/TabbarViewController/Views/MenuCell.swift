@@ -110,7 +110,10 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
             }
 
             let width = CGFloat(value * self.tabs[indexPath.row].title.count)
-            
+            // 最低でもheightの大きさにする
+            if width  < frame.height {
+                width = frame.height
+            }
             return CGSize(width:width, height: frame.height )
         }
         
@@ -120,6 +123,12 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
+        
+        // 押したのがボタンであればtappedTabButtonを呼ぶ
+        if tabs[indexPath.row].isButton {
+            delegate?.tapped(indexPath: indexPath)
+        }
+        
     }
     
     func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
