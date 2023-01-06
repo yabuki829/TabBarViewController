@@ -86,7 +86,7 @@ class TabbarCollectionViewCell:UICollectionViewCell{
     }
 }
 
-
+/// TODO- 今後制約コード書き直す
 extension UIView{
     public func constraints(top: NSLayoutYAxisAnchor? = nil,paddingTop: CGFloat = 0,
                 left: NSLayoutXAxisAnchor? = nil, paddingLeft: CGFloat = 0,

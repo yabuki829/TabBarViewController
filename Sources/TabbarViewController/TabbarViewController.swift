@@ -28,9 +28,10 @@ open class UITabbarViewController:UIViewController {
    
     /// タブの位置
     private var tabIndex = 0
-    private var titleList = [String]()
+    private var tabs = [TabTag]()
     private var iconList = [String]()
     private var isScrollable = false
+    
     // menucellを押すとselectedcellを変更するためにアクセスできるように宣言してる
     private var contentCell = TabContentViewCollectionCell()
     public var selectedText = TabColor(textColor: .white , backgroundColor: .link)
@@ -62,8 +63,10 @@ open class UITabbarViewController:UIViewController {
         collectionView.delegate  = self
         collectionView.dataSource = self
     }
-
-    open func setting(_ tabindex:Int ,titleList: [String],isScroltable:Bool = false){
+    
+    ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
+    ///isScroltableのデフォルトはfalse
+    open func setting(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
         self.tabIndex = tabindex
         self.isScrollable = isScroltable
         if tabindex > addContentViews().count || tabindex == views.count{
@@ -72,9 +75,9 @@ open class UITabbarViewController:UIViewController {
         }
 
         
-        self.titleList = titleList
+        self.tabs = tabs
     }
-    ///　iconListはuiimageのsystemnameを設定してください
+    ///　iconListにはuiimageのsystemnameを設定してください
     open func setting(_ tabindex:Int ,iconList: [String]){
         self.tabIndex = tabindex
         if tabindex > addContentViews().count || tabindex == views.count{
@@ -84,15 +87,15 @@ open class UITabbarViewController:UIViewController {
         self.iconList = iconList
         
     }
+    /// テーブルビューのコンテント
     open func addViews() -> [UIView] {
         return views
     }
+    /// タブのコンテント
     open func addContentViews() -> [TabContent] {
         return [TabContent]()
     }
     
- 
-
     
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
@@ -102,6 +105,11 @@ open class UITabbarViewController:UIViewController {
     open func contentViewHeight() -> CGFloat{
         return 200
     }
+    ///タップしたボタンのindexPathを返す
+    ///if indexPath.row == 0 { do someting }
+    ///- Parameters:
+    /// - indexPath:タップされたボタンのindexPath
+    open func tappedTabButton(indexPath:IndexPath){}
 }
 
 extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -109,13 +117,14 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       if indexPath.row == tabIndex {
           if isTabIconImage {
+              
               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-              cell.setting(tabIndex, titleList:  titleList,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+              cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
               cell.delegate = self
               return cell
           }
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-          cell.setting(tabIndex, titleList:  titleList,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+          cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
           
           return cell
@@ -173,10 +182,16 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    
 
 }
 
 extension UITabbarViewController:reloadDelegate{
+    internal func tapped(indexPath: IndexPath) {
+        
+    }
+    
     
     internal func reload(indexPath: IndexPath) {
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
@@ -184,10 +199,28 @@ extension UITabbarViewController:reloadDelegate{
 }
 
 
+enum tab {
+    case button
+    case label
+}
+
+public struct TabTag {
+    public let title: String
+    public let isButton: Bool
+    
+    init(title:String,isButton: Bool = false) {
+        self.title = title
+        self.isButton = isButton
+    }
+}
 
 
 protocol reloadDelegate: AnyObject  {
     func reload(indexPath:IndexPath)
+    func tapped(indexPath:IndexPath)
 }
+
+
+
 
 

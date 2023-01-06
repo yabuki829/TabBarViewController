@@ -17,7 +17,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     private var tabCount = 0
     private var isScrollable = false
     
-    private var titleList = [String]()
+    private var tabs = [TabTag]()
     var selectedIndexPath: IndexPath?
     
     
@@ -59,13 +59,21 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return titleList.count
+        return tabs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.identifier, for: indexPath) as! TabCell
-        cell.titleLabel.text = titleList[indexPath.row]
-        cell.configure(defalt: defaultText!, selected: selectedText!,height:frame.height,isScrollable: isScrollable)
+        if tabs[indexPath.row].isButton {
+            print("buttonだよ")
+            cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
+            cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
+        }
+        else {
+            print("labelだよ")
+            cell.titleLabel.text = tabs[indexPath.row].title
+            cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
+        }
         
         if  selectedIndexPath?.row == indexPath.row {
             cell.isSelected = true
@@ -76,40 +84,47 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
         if isScrollable {
             return 10
         }
         return 0
     }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
-            
             var value = 20
-    
-            if isAlphanumeric(str: titleList[indexPath.row]) {
+            
+            if isAlphanumeric(str: self.tabs[indexPath.row].title) {
                 value = 13
             }
             else {
                 //文字数が15文字超えたら, valueを15で計算する
-                if titleList[indexPath.row].count > 15{ value = 15}
+                if self.tabs[indexPath.row].title.count > 15{ value = 15}
             }
 
-            let width = CGFloat(value * titleList[indexPath.row].count)
+            let width = CGFloat(value * self.tabs[indexPath.row].title.count)
             
             return CGSize(width:width, height: frame.height )
         }
         
-        return CGSize(width:collectionView.frame.width  / CGFloat(titleList.count), height: frame.height )
+        return CGSize(width:collectionView.frame.width  / CGFloat(tabs.count), height: frame.height )
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
     }
-    func setting(_ tabindex:Int,titleList: [String],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
+    
+    func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
         self.tabIndex = tabindex
-        self.titleList = titleList
+        self.tabs = tabs
         self.defaultText = defalutText
         self.selectedText = selectedText
         self.isScrollable = isScrollable
@@ -122,7 +137,6 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     ////アルファベットのみで構成されているかどうか
     private func isAlphanumeric(str:String) -> Bool{
-        
         guard str != "" else { return false }
         if str.range(of:"[^a-zA-Z0-9]", options: .regularExpression) == nil {
             return true
@@ -150,8 +164,8 @@ class TabCell:UICollectionViewCell{
             }
         }
     }
-    var titleLabel: SSPaddingLabel = {
-        let label = SSPaddingLabel()
+    var titleLabel: UILabel = {
+        let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 16)
@@ -164,20 +178,46 @@ class TabCell:UICollectionViewCell{
         return label
     }()
     
+    var titleButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.textAlignment = .center
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.backgroundColor = .systemGray5
+        button.layer.cornerRadius = 8
+        button.layer.borderColor = UIColor.systemGray3.cgColor
+        button.layer.borderWidth = 1
+        button.clipsToBounds = true
+        
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.isUserInteractionEnabled = false
+        
         contentView.addSubview(titleLabel)
+        contentView.addSubview(titleButton)
         titleLabel.constraints(top: contentView.topAnchor, paddingTop: 0,
                           left: contentView.leftAnchor, paddingLeft: 0,
                           right: contentView.rightAnchor, paddingRight: 0,
                           bottom: contentView.bottomAnchor, paddingBottom: 0)
+        titleButton.constraints(top: contentView.topAnchor, paddingTop: 0,
+                          left: contentView.leftAnchor, paddingLeft: 0,
+                          right: contentView.rightAnchor, paddingRight: 0,
+                          bottom: contentView.bottomAnchor, paddingBottom: 0)
+        
+        
+        
     }
     
     func configure(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
+        titleButton.isHidden = true
         selectedColor = selected
         defalutColor = defalt
         titleLabel.textColor = defalutColor?.textColor
         titleLabel.layer.cornerRadius = height / 2
+        
         backgroundColor = defalutColor?.backgroundColor
         self.isScrollable = isScrollable
         
@@ -185,6 +225,19 @@ class TabCell:UICollectionViewCell{
             backgroundColor = .white
         }
        
+    }
+    func configureButton(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
+        titleLabel.isHidden = true
+        selectedColor = selected
+        defalutColor = defalt
+        titleButton.setTitleColor(defalutColor?.textColor, for: .normal)
+        titleButton.layer.cornerRadius = height / 2
+        backgroundColor = defalutColor?.backgroundColor
+        
+        self.isScrollable = isScrollable
+        if isScrollable {
+            backgroundColor = .white
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
