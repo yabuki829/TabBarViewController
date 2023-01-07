@@ -209,7 +209,7 @@ enum tab {
     case label
 }
 
-public struct TabTag {
+public struct TabTag:Codable {
     let title: String
     let isButton: Bool
     
