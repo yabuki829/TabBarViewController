@@ -8,18 +8,19 @@
 import Foundation
 open class TabTagManager{
     
-    static let shared = TabTagManager()
     private let userDefaluts = UserDefaults.standard
     private let tags = [TabTag]()
-    
+    var forkey = ""
     func save(tags:[TabTag]){
         // tagsをjsonに変更して保存する
         let data = convertData(tags: tags)
-        userDefaluts.setValue(data, forKey: "tabtag")
+        userDefaluts.setValue(data, forKey: forkey)
         
         
     }
-    
+    func setKey(key:String){
+        self.forkey = key
+    }
     /// index番目のtagを削除する。
     func delete(index:Int){
         var tags = get()

@@ -19,7 +19,7 @@ public struct TabContent{
 
 open class UITabbarViewController:UIViewController {
     
-    private let collectionView:UICollectionView = {
+    let collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize  = UICollectionViewFlowLayout.automaticSize
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
