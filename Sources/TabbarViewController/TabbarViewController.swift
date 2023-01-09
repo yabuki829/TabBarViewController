@@ -98,7 +98,9 @@ open class UITabbarViewController:UIViewController {
         return [TabContent]()
     }
     
-    
+    open func reloadCollectionView(){
+        collectionView.reloadData()
+    }
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
         return 30
