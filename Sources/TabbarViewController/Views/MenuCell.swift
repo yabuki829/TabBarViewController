@@ -34,6 +34,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         collecitonview.dataSource = self
         collecitonview.delegate = self
         collecitonview.isScrollEnabled = false
+        collecitonview.showsVerticalScrollIndicator = false
         return collecitonview
     }()
     

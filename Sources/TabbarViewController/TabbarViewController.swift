@@ -23,6 +23,8 @@ open class UITabbarViewController:UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize  = UICollectionViewFlowLayout.automaticSize
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        
         return cv
     }()
    
