@@ -59,7 +59,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         fatalError("init(coder:) has not been implemented")
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        print("numberOfItemsInSection",tabs.count)
         return tabs.count
     }
     
@@ -122,6 +122,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("タップ")
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
         
@@ -133,7 +134,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     
     func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
-        print("menuCellの設定をします")
+        print("menuCellの設定をします",tabs.count)
         self.tabIndex = tabindex
         self.tabs = tabs
         self.defaultText = defalutText
