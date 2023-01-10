@@ -106,8 +106,6 @@ open class UITabbarViewController:UIViewController {
     open func reloadCollectionView(){
         collectionView.reloadData()
     }
-    
-    
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
         return 30
@@ -129,15 +127,17 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
       if indexPath.row == tabIndex {
           if isTabIconImage {
               
-              menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-              menuCell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
-              menuCell.delegate = self
+              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
+              cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+              cell.delegate = self
+              menuCell = cell
               return menuCell
           }
-          menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-          menuCell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
-          menuCell.delegate = self
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
+          cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+          cell.delegate = self
           
+          menuCell = cell
           return menuCell
       }
       else if indexPath.row == tabIndex+1 {
