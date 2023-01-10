@@ -107,7 +107,9 @@ open class UITabbarViewController:UIViewController {
         collectionView.reloadData()
     }
     
-    open func reloadTabCell(){
+    open func reloadTabCell(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
+        //menucellの情報を更新する
+        menuCell?.setting(tabindex, tabs: tabs, defalutText: defalultText, selectedText: selectedText, isScrollable: isScroltable)
         menuCell?.collectionView.reloadData()
     }
     
