@@ -67,11 +67,13 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.identifier, for: indexPath) as! TabCell
         if tabs[indexPath.row].isButton {
             print("buttonだよ",tabs[indexPath.row].title)
+            cell.titleButton.setTitle(String(), for: .normal)
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
         else {
             print("labelだよ", tabs[indexPath.row].title)
+            cell.titleLabel.text = String()
             cell.titleLabel.text = tabs[indexPath.row].title
             cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
