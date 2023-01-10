@@ -42,7 +42,6 @@ open class UITabbarViewController:UIViewController {
     private var contents = [TabContent]()
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
-    private var menuCell = MenuCell()
    
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,9 +99,6 @@ open class UITabbarViewController:UIViewController {
     }
     
     
-    open func reloadTabCell(){
-        menuCell.collectionView.reloadData()
-    }
     open func reloadCollectionView(){
         collectionView.reloadData()
     }
@@ -130,14 +126,12 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
               cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
               cell.delegate = self
-              menuCell = cell
               return cell
           }
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
           cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
           
-          menuCell = cell
           return cell
       }
       else if indexPath.row == tabIndex+1 {
