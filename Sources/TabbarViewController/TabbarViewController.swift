@@ -54,8 +54,7 @@ open class UITabbarViewController:UIViewController {
         
         
         settingCollectionView()
-        views = addViews()
-        contents = addContentViews()
+        
        
     }
     private func settingCollectionView(){
@@ -78,6 +77,8 @@ open class UITabbarViewController:UIViewController {
 
         
         self.tabs = tabs
+        views = addViews()
+        contents = addContentViews()
     }
     ///　iconListにはuiimageのsystemnameを設定してください
     open func setting(_ tabindex:Int ,iconList: [String]){
@@ -87,8 +88,11 @@ open class UITabbarViewController:UIViewController {
             self.tabIndex = 0
         }
         self.iconList = iconList
+        views = addViews()
+        contents = addContentViews()
         
     }
+    
     /// テーブルビューのコンテント
     open func addViews() -> [UIView] {
         return views
