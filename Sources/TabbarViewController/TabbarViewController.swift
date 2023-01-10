@@ -103,7 +103,6 @@ open class UITabbarViewController:UIViewController {
         collectionView.reloadData()
     }
     func reloadTab(){
-        print("もしかして呼ばれてる?")
         menuCell.collectionView.reloadData()
     }
     ///タブバーの高さ。デフォルトは30
@@ -130,13 +129,13 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
               cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
               cell.delegate = self
-              menuCell = cell
+//              menuCell = cell
               return cell
           }
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
           cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
-          menuCell = cell
+//          menuCell = cell
           return cell
       }
       else if indexPath.row == tabIndex+1 {
