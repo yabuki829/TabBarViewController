@@ -67,7 +67,6 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.identifier, for: indexPath) as! TabCell
         if tabs[indexPath.row].isButton {
             print("buttonだよ",tabs[indexPath.row].title)
-            cell.titleButton.setTitle(String(), for: .normal)
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
@@ -211,22 +210,21 @@ class TabCell:UICollectionViewCell{
         print("TagCellが呼ばれました")
         contentView.isUserInteractionEnabled = false
         
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(titleButton)
-        titleLabel.constraints(top: contentView.topAnchor, paddingTop: 0,
-                          left: contentView.leftAnchor, paddingLeft: 0,
-                          right: contentView.rightAnchor, paddingRight: 0,
-                          bottom: contentView.bottomAnchor, paddingBottom: 0)
-        titleButton.constraints(top: contentView.topAnchor, paddingTop: 0,
-                          left: contentView.leftAnchor, paddingLeft: 0,
-                          right: contentView.rightAnchor, paddingRight: 0,
-                          bottom: contentView.bottomAnchor, paddingBottom: 0)
+        
         
         
         
     }
     
     func configure(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
+        contentView.addSubview(titleLabel)
+     
+        titleLabel.constraints(top: contentView.topAnchor, paddingTop: 0,
+                          left: contentView.leftAnchor, paddingLeft: 0,
+                          right: contentView.rightAnchor, paddingRight: 0,
+                          bottom: contentView.bottomAnchor, paddingBottom: 0)
+       
+        
         titleButton.isHidden = true
         selectedColor = selected
         defalutColor = defalt
@@ -239,9 +237,16 @@ class TabCell:UICollectionViewCell{
         if isScrollable {
             backgroundColor = .white
         }
+        
+        
        
     }
     func configureButton(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
+        contentView.addSubview(titleButton)
+        titleButton.constraints(top: contentView.topAnchor, paddingTop: 0,
+                          left: contentView.leftAnchor, paddingLeft: 0,
+                          right: contentView.rightAnchor, paddingRight: 0,
+                          bottom: contentView.bottomAnchor, paddingBottom: 0)
         titleLabel.isHidden = true
         selectedColor = selected
         defalutColor = defalt
