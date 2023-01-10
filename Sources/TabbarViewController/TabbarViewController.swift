@@ -130,7 +130,7 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
           cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
           menuCell = cell
-          return cell
+          return menuCell ?? MenuCell()
       }
       else if indexPath.row == tabIndex+1 {
           contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabContentViewCollectionCell.identifier, for: indexPath) as! TabContentViewCollectionCell
