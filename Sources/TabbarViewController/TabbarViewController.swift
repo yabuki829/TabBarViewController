@@ -127,8 +127,8 @@ open class UITabbarViewController:UIViewController {
     /// - indexPath:タップされたボタンのindexPath
     open func tappedTabButton(indexPath:IndexPath){}
     /// 選択中のtabのindexを返す
-    open func getSelectedTagIndex() -> IndexPath{
-        return menuCell?.selectedIndexPath
+    open func getSelectedTagIndex() -> Int{
+        return menuCell?.selectedIndexPath?.row ?? 0
     }
 }
 
