@@ -131,14 +131,14 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
               cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
               cell.delegate = self
               menuCell = cell
-              return menuCell
+              return cell
           }
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
           cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
           
           menuCell = cell
-          return menuCell
+          return cell
       }
       else if indexPath.row == tabIndex+1 {
           contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabContentViewCollectionCell.identifier, for: indexPath) as! TabContentViewCollectionCell
