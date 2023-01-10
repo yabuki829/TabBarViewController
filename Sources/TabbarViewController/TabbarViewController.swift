@@ -42,7 +42,7 @@ open class UITabbarViewController:UIViewController {
     private var contents = [TabContent]()
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
-   
+    private var menuCell =  MenuCell()
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,6 +102,10 @@ open class UITabbarViewController:UIViewController {
     open func reloadCollectionView(){
         collectionView.reloadData()
     }
+    
+    open func reloadTabCell(){
+        menuCell.collectionView.reloadData()
+    }
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
         return 30
@@ -123,16 +127,16 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
       if indexPath.row == tabIndex {
           if isTabIconImage {
               
-              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-              cell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
-              cell.delegate = self
-              return cell
+              menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
+              menuCell.setting(tabIndex, tabs: tabs,defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+              menuCell.delegate = self
+              return menuCell
           }
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-          cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
-          cell.delegate = self
+          menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
+          menuCell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+          menuCell.delegate = self
           
-          return cell
+          return menuCell
       }
       else if indexPath.row == tabIndex+1 {
           contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabContentViewCollectionCell.identifier, for: indexPath) as! TabContentViewCollectionCell

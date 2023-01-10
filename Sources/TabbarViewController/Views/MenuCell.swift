@@ -40,7 +40,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        
+        print("MenuCellが呼ばれました")
         self.addSubview(collectionView)
         collectionView.center(inView: self)
         collectionView.sizing(height: self.frame.height,width: self.frame.width)
@@ -133,6 +133,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     
     func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
+        print("menuCellの設定をします")
         self.tabIndex = tabindex
         self.tabs = tabs
         self.defaultText = defalutText
