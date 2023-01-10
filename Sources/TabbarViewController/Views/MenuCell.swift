@@ -188,6 +188,7 @@ class TabCell:UICollectionViewCell{
         label.layer.borderColor = UIColor.systemGray3.cgColor
         label.layer.borderWidth = 1
         label.clipsToBounds = true
+        label.text = "エラー"
         return label
     }()
     
@@ -201,7 +202,7 @@ class TabCell:UICollectionViewCell{
         button.layer.borderColor = UIColor.systemGray3.cgColor
         button.layer.borderWidth = 1
         button.clipsToBounds = true
-        
+        button.setTitle("エラー", for: .normal)
         return button
     }()
     
@@ -210,6 +211,7 @@ class TabCell:UICollectionViewCell{
         print("TagCellが呼ばれました")
         contentView.isUserInteractionEnabled = false
         
+        contentView.addSubview(titleLabel)
         
         
         
@@ -217,15 +219,8 @@ class TabCell:UICollectionViewCell{
     }
     
     func configure(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
-        contentView.addSubview(titleLabel)
-     
-        titleLabel.constraints(top: contentView.topAnchor, paddingTop: 0,
-                          left: contentView.leftAnchor, paddingLeft: 0,
-                          right: contentView.rightAnchor, paddingRight: 0,
-                          bottom: contentView.bottomAnchor, paddingBottom: 0)
-       
-        
         titleButton.isHidden = true
+        titleLabel.isHidden = false
         selectedColor = selected
         defalutColor = defalt
         titleLabel.textColor = defalutColor?.textColor
@@ -237,17 +232,11 @@ class TabCell:UICollectionViewCell{
         if isScrollable {
             backgroundColor = .white
         }
-        
-        
        
     }
     func configureButton(defalt:TabColor,selected:TabColor,height:CGFloat,isScrollable:Bool){
-        contentView.addSubview(titleButton)
-        titleButton.constraints(top: contentView.topAnchor, paddingTop: 0,
-                          left: contentView.leftAnchor, paddingLeft: 0,
-                          right: contentView.rightAnchor, paddingRight: 0,
-                          bottom: contentView.bottomAnchor, paddingBottom: 0)
         titleLabel.isHidden = true
+        titleButton.isHidden = false
         selectedColor = selected
         defalutColor = defalt
         titleButton.setTitleColor(defalutColor?.textColor, for: .normal)
