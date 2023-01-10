@@ -206,6 +206,7 @@ class TabCell:UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print("TagCellが呼ばれました")
         contentView.isUserInteractionEnabled = false
         
         contentView.addSubview(titleLabel)
