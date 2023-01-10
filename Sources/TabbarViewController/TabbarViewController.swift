@@ -42,7 +42,6 @@ open class UITabbarViewController:UIViewController {
     private var contents = [TabContent]()
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
-    private var menuCell = MenuCell()
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,9 +101,7 @@ open class UITabbarViewController:UIViewController {
     open func reloadCollectionView(){
         collectionView.reloadData()
     }
-    func reloadTab(){
-        menuCell.collectionView.reloadData()
-    }
+    
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
         return 30
