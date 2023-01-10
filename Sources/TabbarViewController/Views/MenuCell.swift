@@ -70,10 +70,12 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
-        print("labelだよ",tabs[indexPath.row].title)
-        cell.titleLabel.text = tabs[indexPath.row].title
-        cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
-    
+        else {
+            print("labelだよ", tabs[indexPath.row].title)
+            cell.titleLabel.text = tabs[indexPath.row].title
+            cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
+        }
+        
         if  selectedIndexPath?.row == indexPath.row {
             cell.isSelected = true
            
