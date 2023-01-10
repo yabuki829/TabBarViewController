@@ -40,7 +40,7 @@ open class UITabbarViewController:UIViewController {
     public var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
     private var views = [UIView]()
     private var contents = [TabContent]()
-    private var cell = MenuCell()
+    private var menuCell: MenuCell?
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
     open override func viewDidLoad() {
@@ -103,9 +103,9 @@ open class UITabbarViewController:UIViewController {
         collectionView.reloadData()
     }
     
-//    func reloadTabCell(){
-//        cell.collectionView.reloadData()
-//    }
+    func reloadTabCell(){
+        menuCell?.collectionView.reloadData()
+    }
     
     ///タブバーの高さ。デフォルトは30
     open func tabHeight() -> CGFloat{
@@ -129,6 +129,7 @@ extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSo
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
           cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
           cell.delegate = self
+          menuCell = cell
           return cell
       }
       else if indexPath.row == tabIndex+1 {
