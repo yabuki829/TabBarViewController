@@ -70,12 +70,10 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
-        else {
-            print("labelだよ")
-            cell.titleLabel.text = tabs[indexPath.row].title
-            cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
-        }
-        
+        print("labelだよ",tabs[indexPath.row].title)
+        cell.titleLabel.text = tabs[indexPath.row].title
+        cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
+    
         if  selectedIndexPath?.row == indexPath.row {
             cell.isSelected = true
            
@@ -122,7 +120,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("タップ")
+        print(tabs[indexPath.row].title)
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
         
