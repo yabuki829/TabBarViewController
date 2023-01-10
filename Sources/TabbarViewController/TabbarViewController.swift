@@ -207,6 +207,7 @@ extension UITabbarViewController:reloadDelegate{
             
         }
         else{
+            contentCell.configure(views: views)
             contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
         }
     }
