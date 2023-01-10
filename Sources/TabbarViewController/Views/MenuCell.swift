@@ -66,7 +66,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.identifier, for: indexPath) as! TabCell
         if tabs[indexPath.row].isButton {
-            print("buttonだよ")
+            print("buttonだよ",tabs[indexPath.row].title)
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
