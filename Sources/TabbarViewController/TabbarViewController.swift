@@ -103,6 +103,7 @@ open class UITabbarViewController:UIViewController {
         collectionView.reloadData()
     }
     func reloadTab(){
+        print("もしかして呼ばれてる?")
         menuCell.collectionView.reloadData()
     }
     ///タブバーの高さ。デフォルトは30
