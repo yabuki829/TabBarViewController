@@ -224,8 +224,8 @@ enum tab {
 }
 
 public struct TabTag:Codable {
-    let title: String
-    let isButton: Bool
+    public let title: String
+    public let isButton: Bool
     
     public init(title:String,isButton: Bool = false) {
         self.title = title
