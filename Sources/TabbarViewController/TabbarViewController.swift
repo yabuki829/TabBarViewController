@@ -126,6 +126,10 @@ open class UITabbarViewController:UIViewController {
     ///- Parameters:
     /// - indexPath:タップされたボタンのindexPath
     open func tappedTabButton(indexPath:IndexPath){}
+    /// 選択中のtabのindexを返す
+    open func getSelectedTagIndex() -> IndexPath{
+        return menuCell?.selectedIndexPath
+    }
 }
 
 extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{

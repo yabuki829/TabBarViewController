@@ -124,6 +124,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(tabs[indexPath.row].title)
+        
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
         
