@@ -103,7 +103,7 @@ open class UITabbarViewController:UIViewController {
         collectionView.reloadData()
     }
     
-    func reloadTabCell(){
+    open func reloadTabCell(){
         menuCell?.collectionView.reloadData()
     }
     
