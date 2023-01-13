@@ -164,9 +164,11 @@ class TabCell:UICollectionViewCell{
     private var selectedColor:TabColor?
     private var defalutColor:TabColor?
     private var isScrollable = false
+    
     override var isSelected: Bool{
           didSet{
             if isScrollable {
+                print("選択してるタブを変更しました")
                 titleLabel.textColor = isSelected ? selectedColor?.textColor : defalutColor?.textColor
                 titleLabel.backgroundColor = isSelected ? selectedColor?.backgroundColor : defalutColor?.backgroundColor
             }
