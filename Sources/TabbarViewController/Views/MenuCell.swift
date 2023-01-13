@@ -70,6 +70,10 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         }
         else {
             cell.titleLabel.text = String()
+            if selectedIndexPath == indexPath.row {
+                cell.isSelected = true
+            }
+            
             cell.titleLabel.text = tabs[indexPath.row].title
             cell.configure(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
         }
