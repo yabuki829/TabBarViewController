@@ -143,7 +143,7 @@ open class UITabbarViewController:UIViewController {
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
     }
     open func moveLastIndexPath(){
-        let indexPath = IndexPath(row: addViews().count, section: 0)
+        let indexPath = IndexPath(row: addViews().count - 1, section: 0)
         menuCell?.selectedIndexPath = indexPath
         // ベストは消したセルの一個前のセルを選択すること
         DispatchQueue.main.async {
