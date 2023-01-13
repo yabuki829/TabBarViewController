@@ -31,7 +31,7 @@ public class TabContentViewCollectionCell:UICollectionViewCell,UICollectionViewD
         collectionView.dataSource = self
         collectionView.delegate = self
         self.addSubview(collectionView)
-        
+    
         
        
     }

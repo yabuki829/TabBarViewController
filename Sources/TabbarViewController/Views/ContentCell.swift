@@ -23,7 +23,6 @@ class CollectionViewContentCell:UICollectionViewCell {
     
     
     func settingView(inView view:UIView){
-        print("TabContentCellにviewを設定します")
         contentView.addSubview(view)
         view.constraints(top: contentView.topAnchor, paddingTop: 0,
                     left: contentView.leftAnchor, paddingLeft: 0,
