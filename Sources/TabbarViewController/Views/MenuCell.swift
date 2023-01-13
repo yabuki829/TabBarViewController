@@ -70,7 +70,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         }
         else {
             cell.titleLabel.text = String()
-            if selectedIndexPath == indexPath.row {
+            if selectedIndexPath?.row == indexPath.row {
                 cell.isSelected = true
             }
             
