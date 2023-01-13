@@ -133,8 +133,9 @@ open class UITabbarViewController:UIViewController {
     
     open func moveZeroIndexPath(){
         let indexPath = IndexPath(row: 0, section: 0)
-        menuCell?.collectionView.scrollToItem(at: indexPath,  at: .centeredHorizontally, animated: true)
+        
         menuCell?.selectedIndexPath = indexPath
+        menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
     }
