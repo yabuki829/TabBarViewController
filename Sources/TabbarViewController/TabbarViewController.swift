@@ -130,6 +130,13 @@ open class UITabbarViewController:UIViewController {
     open func getSelectedTagIndex() -> Int{
         return menuCell?.selectedIndexPath?.row ?? 0
     }
+    
+    open func moveZero(){
+        let indexPath = IndexPath(row: 0, section: 0)
+        menuCell?.collectionView.scrollToItem(at: indexPath,  at: .centeredHorizontally, animated: true)
+        contentCell.configure(views: views)
+        contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
+    }
 }
 
 extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
