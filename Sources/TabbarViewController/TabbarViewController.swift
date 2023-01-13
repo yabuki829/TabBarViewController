@@ -138,7 +138,7 @@ open class UITabbarViewController:UIViewController {
         
         DispatchQueue.main.async {
 //            self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-            menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            self.menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
         }
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
