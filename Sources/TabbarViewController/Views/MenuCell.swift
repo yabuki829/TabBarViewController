@@ -236,7 +236,7 @@ class TabCell:UICollectionViewCell{
         self.isScrollable = isScrollable
         
         if isScrollable {
-            backgroundColor = .white
+            backgroundColor = .systemBackground
         }
        
     }
