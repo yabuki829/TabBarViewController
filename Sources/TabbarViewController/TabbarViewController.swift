@@ -245,7 +245,7 @@ enum tab {
     case label
 }
 
-public struct TabTag:Codable {
+public struct TabTag:Codable,Equatable {
     public let title: String
     public let isButton: Bool
     

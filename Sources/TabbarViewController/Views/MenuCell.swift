@@ -76,7 +76,7 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         }
         
         if  selectedIndexPath?.row == indexPath.row {
-            print(selectedIndexPath?.row,"番目のセルを選択中です")
+       
             cell.isSelected = true
            
         }
