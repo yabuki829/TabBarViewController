@@ -37,7 +37,7 @@ open class UITabbarViewController:UIViewController {
     // menucellを押すとselectedcellを変更するためにアクセスできるように宣言してる
     private var contentCell = TabContentViewCollectionCell()
     public var selectedText = TabColor(textColor: .white , backgroundColor: .link)
-    public var defalultText = TabColor(textColor: .systemBackground , backgroundColor: .systemGray5)
+    public var defalultText = TabColor(textColor: .black , backgroundColor: .systemGray5)
     private var views = [UIView]()
     private var contents = [TabContent]()
     private var menuCell: MenuCell?
