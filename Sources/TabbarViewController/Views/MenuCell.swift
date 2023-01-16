@@ -186,7 +186,7 @@ class TabCell:UICollectionViewCell{
         label.backgroundColor = .systemGray5
         label.layer.cornerRadius = 8
         label.layer.borderColor = UIColor.systemGray3.cgColor
-        label.layer.borderWidth = 1
+        label.layer.borderWidth = 0.5
         label.clipsToBounds = true
         label.text = "エラー"
         return label
@@ -200,7 +200,7 @@ class TabCell:UICollectionViewCell{
         button.backgroundColor = .systemGray5
         button.layer.cornerRadius = 8
         button.layer.borderColor = UIColor.systemGray3.cgColor
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 0.5
         button.clipsToBounds = true
         button.setTitle("エラー", for: .normal)
         return button
