@@ -19,7 +19,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     
     private var tabs = [TabTag]()
     var selectedIndexPath: IndexPath?
-    
+    var preselectedIndexPath: IndexPath?
     
     var selectedText: TabColor?
     var defaultText: TabColor?
@@ -51,7 +51,10 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         
         
         let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
+        // 一個前に選択していた選択肢を覚えておく
+        self.preselectedIndexPath = indexPath
         self.selectedIndexPath = indexPath
+        
         DispatchQueue.main.async {
             self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
         }
@@ -111,19 +114,19 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
             else {
                 //今後修正する
                 // 使えるデータは文字数のみ
-            if self.tabs[indexPath.row].title.count > 30 {
+            if self.tabs[indexPath.row].title.count >= 30 {
                     value = 12
                 }
-                else if self.tabs[indexPath.row].title.count > 25 {
+                else if self.tabs[indexPath.row].title.count >= 25 {
                     value = 13
                 }
-                else if self.tabs[indexPath.row].title.count > 20 {
+                else if self.tabs[indexPath.row].title.count >= 20 {
                     value = 14
                 }
-                else if self.tabs[indexPath.row].title.count > 15{
+                else if self.tabs[indexPath.row].title.count >= 15{
                     value = 15
                 }
-                else if self.tabs[indexPath.row].title.count > 10 {
+                else if self.tabs[indexPath.row].title.count >= 10 {
                     value = 16
                 }
                 
@@ -147,7 +150,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.preselectedIndexPath = self.selectedIndexPath
         selectedIndexPath = indexPath
         delegate?.reload(indexPath: indexPath)
         

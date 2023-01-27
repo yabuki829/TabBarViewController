@@ -134,10 +134,11 @@ open class UITabbarViewController:UIViewController {
     open func moveZeroIndexPath(){
         let indexPath = IndexPath(row: 0, section: 0)
         
-        menuCell?.selectedIndexPath = indexPath
-        // ベストは消したセルの一個前のセルを選択すること
+        menuCell?.selectedIndexPath = menuCell?.preselectedIndexPath
+        // 前に選択していたcellに移動
+        
         DispatchQueue.main.async {
-            self.menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            self.menuCell?.collectionView.selectItem(at: self.menuCell?.preselectedIndexPath, animated: true, scrollPosition: .left)
         }
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
