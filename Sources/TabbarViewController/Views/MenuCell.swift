@@ -109,8 +109,14 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
             }
             else {
                 //今後修正する
-             
-//                if self.tabs[indexPath.row].title.count > 15{ value = 15}
+                // 使えるデータは文字数のみ
+                if self.tabs[indexPath.row].title.count > 15{
+                    value = 15
+                }
+                else if self.tabs[indexPath.row].title.count > 10 {
+                    value = 16
+                }
+                
             }
             // 8文字の時
             // 18 * 8 =  144
