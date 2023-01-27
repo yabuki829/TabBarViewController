@@ -113,7 +113,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
 //                if self.tabs[indexPath.row].title.count > 15{ value = 15}
             }
 
-            var width = CGFloat(value * self.tabs[indexPath.row].title.count)　- (value * self.tabs[indexPath.row].title.count) / 10
+            var width = CGFloat(value * self.tabs[indexPath.row].title.count) - CGFloat(value * self.tabs[indexPath.row].title.count) / 10
             // 最低でもheightの大きさにする
             if width  < frame.height {
                 width = frame.height
