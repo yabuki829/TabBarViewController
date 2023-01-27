@@ -23,9 +23,13 @@ public struct TabContent{
 
 open class UITabbarViewController:UIViewController {
     
-    let tableView: UITableView = {
-        let tableview = UITableView()
-        return tableview
+    let collectionView:UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize  = UICollectionViewFlowLayout.automaticSize
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        
+        return cv
     }()
    
     /// タブの位置
@@ -35,7 +39,7 @@ open class UITabbarViewController:UIViewController {
     private var isScrollable = false
     
     // menucellを押すとselectedcellを変更するためにアクセスできるように宣言してる
-    private var contentCell = TabContentViewCell()
+    private var contentCell = TabContentViewCollectionCell()
     public var selectedText = TabColor(textColor: .white , backgroundColor: .link)
     public var defalultText = TabColor(textColor: .label , backgroundColor: .systemGray5)
     private var views = [UIView]()
@@ -46,8 +50,8 @@ open class UITabbarViewController:UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(tableView)
-        tableView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0,
+        view.addSubview(collectionView)
+        collectionView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0,
                     left: view.safeAreaLayoutGuide.leftAnchor, paddingLeft: 0,
                     right: view.safeAreaLayoutGuide.rightAnchor, paddingRight: 0,
                     bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 0)
@@ -58,11 +62,11 @@ open class UITabbarViewController:UIViewController {
        
     }
     private func settingCollectionView(){
-        tableView.register(MenuCell.self, forCellReuseIdentifier: MenuCell.identifier)
-        tableView.register(TabContentViewCell.self, forCellReuseIdentifier: TabContentViewCell.identifier)
-        tableView.register(TableViewContentCell.self, forCellReuseIdentifier:TableViewContentCell.identifier)
-        tableView.delegate  = self
-        tableView.dataSource = self
+        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: MenuCell.identifier)
+        collectionView.register(TabContentViewCollectionCell.self, forCellWithReuseIdentifier: TabContentViewCollectionCell.identifier)
+        collectionView.register(CollectionViewContentCell.self, forCellWithReuseIdentifier:CollectionViewContentCell.identifier)
+        collectionView.delegate  = self
+        collectionView.dataSource = self
     }
     
     ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
@@ -104,7 +108,7 @@ open class UITabbarViewController:UIViewController {
     
     
     open func reloadCollectionView(){
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     open func reloadTabCell(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
@@ -154,67 +158,69 @@ open class UITabbarViewController:UIViewController {
     }
 }
 
-extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == tabIndex {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-            cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
-            cell.delegate = self
-            menuCell = cell
-            return menuCell ?? MenuCell()
-        }
-        else if indexPath.row == tabIndex+1 {
-            contentCell = tableView.dequeueReusableCell(withIdentifier: TabContentViewCell.identifier, for: indexPath) as! TabContentViewCell
-            contentCell.configure(views: views)
-            
-            return contentCell
-        }
-        
-        
-        if tabIndex > indexPath.row {
-            let cell = tableView.dequeueReusableCell(withIdentifier:TableViewContentCell.identifier , for: indexPath) as! TableViewContentCell
-            cell.settingView(inView: contents[indexPath.row].view)
-            
-            return cell
-        }
-        else{
-            let cell = tableView.dequeueReusableCell(withIdentifier:TableViewContentCell.identifier , for: indexPath) as! TableViewContentCell
-            cell.settingView(inView: contents[indexPath.row-2].view)
-            
-            return cell
-        }
+extension UITabbarViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      if indexPath.row == tabIndex {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
+          cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+          cell.delegate = self
+          menuCell = cell
+          return menuCell ?? MenuCell()
+      }
+      else if indexPath.row == tabIndex+1 {
+          contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabContentViewCollectionCell.identifier, for: indexPath) as! TabContentViewCollectionCell
+          contentCell.configure(views: views)
+          
+          return contentCell
+      }
+      
+      if tabIndex > indexPath.row {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier:CollectionViewContentCell.identifier , for: indexPath) as! CollectionViewContentCell
+          cell.settingView(inView: contents[indexPath.row].view)
+          
+          return cell
+      }
+      else{
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier:CollectionViewContentCell.identifier , for: indexPath) as! CollectionViewContentCell
+          cell.settingView(inView: contents[indexPath.row-2].view)
+          
+          return cell
+      }
     }
     
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contents.count + 2
     }
-
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if tabIndex == indexPath.row {
             var tabheight = tabHeight()
             if tabheight <= 0 { tabheight = 30 }
             
-            return  tabheight
+            return CGSize(width: view.frame.width, height: tabheight)
         }
-        return UITableView.automaticDimension
-//        else if tabIndex+1 == indexPath.row {
-//            var contentHeight = contentViewHeight()
-//            if contentHeight <= 0 { contentHeight = 200 }
-//
-//            return contentHeight
-//        }
-//        else {
-//            if tabIndex > indexPath.row {
-//                return  contents[indexPath.row].height
-//            }
-//            else{
-//                return contents[indexPath.row-2].height
-//            }
-//
-//        }
+        else if tabIndex+1 == indexPath.row {
+            var contentHeight = contentViewHeight()
+            if contentHeight <= 0 { contentHeight = 200 }
+            
+            return CGSize(width:view.frame.width, height: contentHeight)
+        }
+        else {
+            if tabIndex > indexPath.row {
+                return CGSize(width: view.frame.width, height: contents[indexPath.row].height)
+            }
+            else{
+                return CGSize(width: view.frame.width, height: contents[indexPath.row-2].height)
+            }
+          
+        }
     }
- 
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
     
     
 

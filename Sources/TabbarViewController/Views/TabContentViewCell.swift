@@ -10,8 +10,8 @@ import UIKit
 
 
 
-public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate{
-    static let identifier = "TabContentViewCell"
+public class TabContentViewCollectionCell:UICollectionViewCell,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate{
+    static let identifier = "TabContentViewCollectionCell"
     var views = [UIView]()
     
     var collectionView:UICollectionView = {
@@ -23,23 +23,19 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
         collecitonview.isScrollEnabled = false
         return collecitonview
     }()
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         collectionView.backgroundColor = .white
         collectionView.register(TabbarCollectionViewCell.self, forCellWithReuseIdentifier: TabbarCollectionViewCell.identifier)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier:"cell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.addSubview(collectionView)
+    
         
-        contentView.addSubview(collectionView)
-        collectionView.constraints(top: contentView.topAnchor, paddingTop: 0,
-                                   left: contentView.leftAnchor, paddingLeft: 0,
-                                   right: contentView.rightAnchor, paddingRight: 0,
-                                   bottom: contentView.bottomAnchor, paddingBottom: 0)
-        
+       
     }
     
-  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

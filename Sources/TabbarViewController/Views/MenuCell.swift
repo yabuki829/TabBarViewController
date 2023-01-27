@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     static let identifier = "MenuCell"
     weak var delegate:reloadDelegate? = nil
     private var tabIndex = 0
@@ -37,13 +37,13 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         collecitonview.showsVerticalScrollIndicator = false
         return collecitonview
     }()
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(collectionView)
-        collectionView.constraints(top: contentView.topAnchor, paddingTop: 0,
-                                   left: contentView.leftAnchor, paddingLeft: 0,
-                                   right: contentView.rightAnchor, paddingRight: 0,
-                                   bottom: contentView.bottomAnchor, paddingBottom: 0)
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+       
+        self.addSubview(collectionView)
+        collectionView.center(inView: self)
+        collectionView.sizing(height: self.frame.height,width: self.frame.width)
         collectionView.register(TabCell.self, forCellWithReuseIdentifier: TabCell.identifier)
         
         
@@ -64,7 +64,6 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.identifier, for: indexPath) as! TabCell
-        
         if tabs[indexPath.row].isButton {
             cell.titleButton.setTitle(tabs[indexPath.row].title, for: .normal)
             cell.configureButton(defalt: defaultText!, selected: selectedText!, height: frame.height, isScrollable: self.isScrollable )
