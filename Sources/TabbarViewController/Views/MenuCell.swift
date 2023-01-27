@@ -117,16 +117,16 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
             if self.tabs[indexPath.row].title.count >= 30 {
                     value = 12
                 }
-                else if self.tabs[indexPath.row].title.count >= 25 {
+                else if self.tabs[indexPath.row].title.count > 25 {
                     value = 14
                 }
-//                else if self.tabs[indexPath.row].title.count >= 20 {
-//                    value = 14
-//                }
-                else if self.tabs[indexPath.row].title.count >= 15{
+                else if self.tabs[indexPath.row].title.count > 20 {
+                    value = 14
+                }
+                else if self.tabs[indexPath.row].title.count > 15{
                     value = 15
                 }
-                else if self.tabs[indexPath.row].title.count >= 10 {
+                else if self.tabs[indexPath.row].title.count > 10 {
                     value = 16
                 }
                 
