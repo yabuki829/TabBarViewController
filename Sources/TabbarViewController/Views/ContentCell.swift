@@ -8,13 +8,12 @@
 import Foundation
 import UIKit
 
-class CollectionViewContentCell:UICollectionViewCell {
-    static var identifier = "CollectionViewContentCell"
+class TableViewContentCell:UITableViewCell {
+    static var identifier = "TableViewContentCell"
     var view = UIView()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-    
     
     
     required init?(coder: NSCoder) {
