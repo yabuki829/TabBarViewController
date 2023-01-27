@@ -219,6 +219,9 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
 
         }
     }
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
  
     
     
