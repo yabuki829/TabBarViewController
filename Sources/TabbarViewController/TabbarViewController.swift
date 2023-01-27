@@ -197,21 +197,22 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
             
             return  tabheight
         }
-        else if tabIndex+1 == indexPath.row {
-            var contentHeight = contentViewHeight()
-            if contentHeight <= 0 { contentHeight = 200 }
-            
-            return contentHeight
-        }
-        else {
-            if tabIndex > indexPath.row {
-                return  contents[indexPath.row].height
-            }
-            else{
-                return contents[indexPath.row-2].height
-            }
-          
-        }
+        return UITableView.automaticDimension
+//        else if tabIndex+1 == indexPath.row {
+//            var contentHeight = contentViewHeight()
+//            if contentHeight <= 0 { contentHeight = 200 }
+//
+//            return contentHeight
+//        }
+//        else {
+//            if tabIndex > indexPath.row {
+//                return  contents[indexPath.row].height
+//            }
+//            else{
+//                return contents[indexPath.row-2].height
+//            }
+//
+//        }
     }
  
     
