@@ -133,11 +133,11 @@ open class UITabbarViewController:UIViewController {
     
     open func moveZeroIndexPath(){
 //        let indexPath = IndexPath(row: 0, section: 0)
-        var preIndexPath = IndexPath(row: 0, section: 0)
+        var preIndexPath = IndexPath(row: (menuCell?.preselectedIndexPath?.row ?? 1) - 1, section: 0)
         
         
-        if menuCell?.preselectedIndexPath?.row != 0 {
-            preIndexPath.row -= (menuCell?.preselectedIndexPath?.row ?? 1) -  1
+        if menuCell?.preselectedIndexPath?.row == 0 {
+            preIndexPath.row = 0
         }
         
         menuCell?.selectedIndexPath = preIndexPath
