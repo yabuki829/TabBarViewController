@@ -35,6 +35,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         collecitonview.delegate = self
         collecitonview.isScrollEnabled = false
         collecitonview.showsVerticalScrollIndicator = false
+        collecitonview.showsHorizontalScrollIndicator = false
         return collecitonview
     }()
     
@@ -110,7 +111,16 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
             else {
                 //今後修正する
                 // 使えるデータは文字数のみ
-                if self.tabs[indexPath.row].title.count > 15{
+            if self.tabs[indexPath.row].title.count > 30 {
+                    value = 12
+                }
+                else if self.tabs[indexPath.row].title.count > 25 {
+                    value = 13
+                }
+                else if self.tabs[indexPath.row].title.count > 20 {
+                    value = 14
+                }
+                else if self.tabs[indexPath.row].title.count > 15{
                     value = 15
                 }
                 else if self.tabs[indexPath.row].title.count > 10 {
