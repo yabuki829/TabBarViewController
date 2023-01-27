@@ -137,7 +137,7 @@ open class UITabbarViewController:UIViewController {
         
         
         if menuCell?.preselectedIndexPath?.row != 0 {
-            preIndexPath.row -= 1
+            preIndexPath.row -= (menuCell?.preselectedIndexPath?.row ?? 1) -  1
         }
         
         menuCell?.selectedIndexPath = preIndexPath
