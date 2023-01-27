@@ -32,6 +32,10 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
         collectionView.dataSource = self
         collectionView.delegate = self
         self.addSubview(collectionView)
+        collectionView.constraints(top: topAnchor, paddingTop: 0,
+                                   left: leftAnchor, paddingLeft: 0,
+                                   right: rightAnchor, paddingRight: 0,
+                                   bottom: bottomAnchor, paddingBottom: 0)
     }
     
     
@@ -53,8 +57,7 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
     
     func configure(views:[UIView]){
         self.views = views
-        collectionView.center(inView: self)
-        collectionView.sizing(height: self.frame.height,width: self.frame.width)
+      
         collectionView.reloadData()
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

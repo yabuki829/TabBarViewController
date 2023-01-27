@@ -41,10 +41,12 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(collectionView)
-        collectionView.center(inView: self)
-        collectionView.sizing(height: self.frame.height,width: self.frame.width)
+       
         collectionView.register(TabCell.self, forCellWithReuseIdentifier: TabCell.identifier)
-        
+        collectionView.constraints(top: topAnchor, paddingTop: 0,
+                                   left: leftAnchor, paddingLeft: 0,
+                                   right: rightAnchor, paddingRight: 0,
+                                   bottom: bottomAnchor, paddingBottom: 0)
         
         
         let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
