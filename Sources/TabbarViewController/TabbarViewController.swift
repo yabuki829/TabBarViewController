@@ -133,12 +133,9 @@ open class UITabbarViewController:UIViewController {
     
     open func moveZeroIndexPath(){
 //        let indexPath = IndexPath(row: 0, section: 0)
-        var preIndexPath = IndexPath(row: (menuCell?.preselectedIndexPath?.row ?? 1) - 1, section: 0)
+        let preIndexPath = IndexPath(row: (menuCell?.preselectedIndexPath?.row ?? 0), section: 0)
         
         
-        if menuCell?.preselectedIndexPath?.row == 0 {
-            preIndexPath.row = 0
-        }
         
         menuCell?.selectedIndexPath = preIndexPath
         // 前に選択していたcellに移動
@@ -168,6 +165,7 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
             cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
             cell.delegate = self
+            cell.selectionStyle = .none
             menuCell = cell
             return menuCell ?? MenuCell()
         }
