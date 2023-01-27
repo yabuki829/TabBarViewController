@@ -106,7 +106,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
-            var value = 18
+            var value = 20
             // アルファベットのみかどうか判別
             if isAlphanumeric(str: self.tabs[indexPath.row].title) {
                 value = 13
@@ -128,6 +128,9 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
                 }
                 else if self.tabs[indexPath.row].title.count >= 10 {
                     value = 16
+                }
+                else if self.tabs[indexPath.row].title.count >= 5 {
+                    value = 18
                 }
                 
             }
