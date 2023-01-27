@@ -67,7 +67,7 @@ open class UITabbarViewController:UIViewController {
     
     ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
     ///isScroltableのデフォルトはfalse
-    open func setting(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
+    open func setting(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false,_ separatorStyle:UITableViewCell.SeparatorStyle = .none ){
         self.tabIndex = tabindex
         self.isScrollable = isScroltable
         if tabindex > addContentViews().count || tabindex == views.count{
@@ -75,7 +75,7 @@ open class UITabbarViewController:UIViewController {
             self.tabIndex = 0
         }
 
-        
+        tableView.separatorStyle = separatorStyle
         self.tabs = tabs
         views = addViews()
         contents = addContentViews()

@@ -103,13 +103,13 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
             var value = 20
-            
+            // アルファベットのみかどうか判別
             if isAlphanumeric(str: self.tabs[indexPath.row].title) {
                 value = 13
             }
             else {
-                //文字数が15文字超えたら, valueを15で計算する
-                if self.tabs[indexPath.row].title.count > 15{ value = 15}
+                let count = Int(self.tabs[indexPath.row].title.count / 2)
+                value -= count
             }
 
             var width = CGFloat(value * self.tabs[indexPath.row].title.count)
