@@ -10,8 +10,8 @@ import UIKit
 
 
 
-public class TabContentViewCollectionCell:UICollectionViewCell,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate{
-    static let identifier = "TabContentViewCollectionCell"
+public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate{
+    static let identifier = "TabContentViewCell"
     var views = [UIView]()
     
     var collectionView:UICollectionView = {
@@ -23,19 +23,17 @@ public class TabContentViewCollectionCell:UICollectionViewCell,UICollectionViewD
         collecitonview.isScrollEnabled = false
         return collecitonview
     }()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .white
         collectionView.register(TabbarCollectionViewCell.self, forCellWithReuseIdentifier: TabbarCollectionViewCell.identifier)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier:"cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         self.addSubview(collectionView)
-    
-        
-       
     }
     
+  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

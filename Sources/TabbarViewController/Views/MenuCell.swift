@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     static let identifier = "MenuCell"
     weak var delegate:reloadDelegate? = nil
     private var tabIndex = 0
@@ -37,10 +37,8 @@ class MenuCell:UICollectionViewCell ,UICollectionViewDataSource, UICollectionVie
         collecitonview.showsVerticalScrollIndicator = false
         return collecitonview
     }()
-    
-    override init(frame: CGRect) {
-        super.init(frame:frame)
-       
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(collectionView)
         collectionView.center(inView: self)
         collectionView.sizing(height: self.frame.height,width: self.frame.width)
