@@ -108,12 +108,10 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
                 value = 13
             }
             else {
-                
-                // もし 8 文字の時 -2ぐらいしたい
-                // もし10 の時 -2 ぐらい
-                // 15notoki -2
-                let count = Int(self.tabs[indexPath.row].title.count / 3 )
-                value -= count
+                //今後修正する
+                // 10%分引いてる
+                value -= (value * self.tabs[indexPath.row].title.count) / 10
+//                if self.tabs[indexPath.row].title.count > 15{ value = 15}
             }
 
             var width = CGFloat(value * self.tabs[indexPath.row].title.count)
