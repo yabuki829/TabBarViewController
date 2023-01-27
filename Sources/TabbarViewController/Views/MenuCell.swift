@@ -112,7 +112,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
                 // もし 8 文字の時 -2ぐらいしたい
                 // もし10 の時 -2 ぐらい
                 // 15notoki -2
-                let count = Int(self.tabs[indexPath.row].title.count / 3 * 2)
+                let count = Int(self.tabs[indexPath.row].title.count / 3 )
                 value -= count
             }
 
