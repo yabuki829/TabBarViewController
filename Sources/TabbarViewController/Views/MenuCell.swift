@@ -39,9 +39,11 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addSubview(collectionView)
-        collectionView.center(inView: self)
-        collectionView.sizing(height: self.frame.height,width: self.frame.width)
+        contentView.addSubview(collectionView)
+        collectionView.constraints(top: contentView.topAnchor, paddingTop: 0,
+                                   left: contentView.leftAnchor, paddingLeft: 0,
+                                   right: contentView.rightAnchor, paddingRight: 0,
+                                   bottom: contentView.bottomAnchor, paddingBottom: 0)
         collectionView.register(TabCell.self, forCellWithReuseIdentifier: TabCell.identifier)
         
         
