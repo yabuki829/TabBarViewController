@@ -102,7 +102,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isScrollable {
-            var value = 20
+            var value = 18
             // アルファベットのみかどうか判別
             if isAlphanumeric(str: self.tabs[indexPath.row].title) {
                 value = 13
@@ -112,8 +112,14 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
              
 //                if self.tabs[indexPath.row].title.count > 15{ value = 15}
             }
-
-            var width = CGFloat(value * self.tabs[indexPath.row].title.count) - CGFloat(value * self.tabs[indexPath.row].title.count) / 10
+            // 8文字の時
+            // 18 * 8 =  144
+            // 18 * 10 = 180
+            var width = CGFloat(value * self.tabs[indexPath.row].title.count)
+            
+            
+            
+            
             // 最低でもheightの大きさにする
             if width  < frame.height {
                 width = frame.height
