@@ -43,8 +43,8 @@ open class UITabbarViewController:UIViewController {
     private var menuCell: MenuCell?
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
-    /// タブのスペース
-    public var contentInset = UIEdgeInsets(top: 2,left: 5,bottom: 2, right: -5)
+    /// タブのスペースを設定
+    public var contentInsets = UIEdgeInsets(top: 0, left: 0,bottom: 0, right: 0)
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,7 +65,6 @@ open class UITabbarViewController:UIViewController {
         tableView.register(TableViewContentCell.self, forCellReuseIdentifier:TableViewContentCell.identifier)
         tableView.delegate  = self
         tableView.dataSource = self
-        tableView.contentInset = contentInset
     }
     
     ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
@@ -112,7 +111,7 @@ open class UITabbarViewController:UIViewController {
     
     open func reloadTabCell(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
         //menucellの情報を更新する
-        menuCell?.setting(tabindex, tabs: tabs, defalutText: defalultText, selectedText: selectedText, isScrollable: isScroltable)
+        menuCell?.setting(tabindex, tabs: tabs, defalutText: defalultText, selectedText: selectedText, isScrollable: isScroltable, insets: contentInsets)
         menuCell?.collectionView.reloadData()
     }
     
@@ -166,7 +165,7 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == tabIndex {
             let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-            cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable)
+            cell.setting(tabIndex, tabs:tabs, defalutText: defalultText,selectedText: selectedText, isScrollable: self.isScrollable, insets: contentInsets)
             cell.delegate = self
             cell.selectionStyle = .none
             menuCell = cell

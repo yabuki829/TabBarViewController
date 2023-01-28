@@ -23,6 +23,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
     
     var selectedText: TabColor?
     var defaultText: TabColor?
+   
     private let underlineView: UIView = {
          let view = UIView()
          return view
@@ -49,7 +50,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
                                    right: contentView.rightAnchor, paddingRight: 0,
                                    bottom: contentView.bottomAnchor, paddingBottom: 0)
         
-        
+       
         let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
         // 一個前に選択していた選択肢を覚えておく
         self.preselectedIndexPath = indexPath
@@ -164,13 +165,14 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         
     }
     
-    func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool){
+   func setting(_ tabindex:Int,tabs: [TabTag],defalutText:TabColor,selectedText:TabColor,isScrollable:Bool,insets:UIEdgeInsets){
     
         self.tabIndex = tabindex
         self.tabs = tabs
         self.defaultText = defalutText
         self.selectedText = selectedText
         self.isScrollable = isScrollable
+       collectionView.contentInset = insets
         if isScrollable{
             collectionView.isScrollEnabled = true
         }
