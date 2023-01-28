@@ -43,6 +43,7 @@ open class UITabbarViewController:UIViewController {
     private var menuCell: MenuCell?
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
+    var contentInset = UIEdgeInsets(top: 2,left: 5,bottom: 2, right: -5)
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +64,7 @@ open class UITabbarViewController:UIViewController {
         tableView.register(TableViewContentCell.self, forCellReuseIdentifier:TableViewContentCell.identifier)
         tableView.delegate  = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 2,left: 5,bottom: 2, right: -5)
+        tableView.contentInset = contentInset
     }
     
     ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
