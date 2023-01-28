@@ -63,7 +63,7 @@ open class UITabbarViewController:UIViewController {
         tableView.register(TableViewContentCell.self, forCellReuseIdentifier:TableViewContentCell.identifier)
         tableView.delegate  = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 2,left: 5,bottom: 2, right: 10)
+        tableView.contentInset = UIEdgeInsets(top: 2,left: 5,bottom: 2, right: -5)
     }
     
     ///isScroltableをtrueにすると名前の通りスクロールできるようになる。
