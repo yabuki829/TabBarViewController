@@ -44,7 +44,7 @@ open class UITabbarViewController:UIViewController {
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
     /// タブのスペースを設定
-    public var contentInsets = UIEdgeInsets(top: 0, left: 0,bottom: 0, right: 0)
+    private var contentInsets = UIEdgeInsets(top: 0, left: 10,bottom: 0, right: 10)
     open override func viewDidLoad() {
         super.viewDidLoad()
         
