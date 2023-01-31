@@ -266,6 +266,7 @@ class TabCell:UICollectionViewCell{
         titleLabel.layer.cornerRadius = height / 2
         
         backgroundColor = defalutColor?.backgroundColor
+        titleLabel.backgroundColor = defalutColor?.backgroundColor
         self.isScrollable = isScrollable
         
         if isScrollable {
