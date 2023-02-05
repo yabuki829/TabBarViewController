@@ -32,7 +32,7 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
         collectionView.dataSource = self
         collectionView.delegate = self
         contentView.addSubview(collectionView)
-        collectionView.constraints(top: contentView.topAnchor, paddingTop: 0,
+        collectionView.constraints(top: contentView.topAnchor, paddingTop: 5,
                                    left: contentView.leftAnchor, paddingLeft: 0,
                                    right: contentView.rightAnchor, paddingRight: 0,
                                    bottom: contentView.bottomAnchor, paddingBottom: 0)
