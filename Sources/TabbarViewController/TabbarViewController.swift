@@ -49,7 +49,7 @@ open class UITabbarViewController:UIViewController {
         super.viewDidLoad()
         
         view.addSubview(tableView)
-        tableView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0,
+        tableView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 5,
                     left: view.safeAreaLayoutGuide.leftAnchor, paddingLeft: 0,
                     right: view.safeAreaLayoutGuide.rightAnchor, paddingRight: 0,
                     bottom: view.bottomAnchor, paddingBottom: 0)
