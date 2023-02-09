@@ -137,8 +137,6 @@ open class UITabbarViewController:UIViewController {
 //        let indexPath = IndexPath(row: 0, section: 0)
         let preIndexPath = IndexPath(row: (menuCell?.preselectedIndexPath?.row ?? 0), section: 0)
         
-        
-        
         menuCell?.selectedIndexPath = preIndexPath
         // 前に選択していたcellに移動
        
@@ -148,6 +146,15 @@ open class UITabbarViewController:UIViewController {
         }
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at: preIndexPath , at: .centeredHorizontally, animated: true)
+    }
+    open func moveIndexPath(){
+        let nowIndexPath = IndexPath(row: (menuCell?.selectedIndexPath?.row ?? 0), section: 0)
+        DispatchQueue.main.async {
+            self.menuCell?.collectionView.selectItem(at: nowIndexPath, animated: true, scrollPosition: .left)
+            
+        }
+        contentCell.configure(views: views)
+        contentCell.collectionView.scrollToItem(at: nowIndexPath , at: .centeredHorizontally, animated: true)
     }
     open func moveLastIndexPath(){
         let indexPath = IndexPath(row: addViews().count - 2, section: 0)
