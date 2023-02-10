@@ -23,7 +23,7 @@ public struct TabContent{
 
 open class UITabbarViewController:UIViewController {
     
-    let tableView: UITableView = {
+    public let tableView: UITableView = {
         let tableview = UITableView()
         return tableview
     }()
@@ -134,18 +134,18 @@ open class UITabbarViewController:UIViewController {
     }
     
     open func moveZeroIndexPath(){
-//        let indexPath = IndexPath(row: 0, section: 0)
-        let preIndexPath = IndexPath(row: (menuCell?.preselectedIndexPath?.row ?? 0), section: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
+
         
-        menuCell?.selectedIndexPath = preIndexPath
+        menuCell?.selectedIndexPath = indexPath
         // 前に選択していたcellに移動
        
         DispatchQueue.main.async {
-            self.menuCell?.collectionView.selectItem(at: preIndexPath, animated: true, scrollPosition: .left)
+            self.menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             
         }
         contentCell.configure(views: views)
-        contentCell.collectionView.scrollToItem(at: preIndexPath , at: .centeredHorizontally, animated: true)
+        contentCell.collectionView.scrollToItem(at: indexPath , at: .centeredHorizontally, animated: true)
     }
     open func moveIndexPath(){
         let nowIndexPath = IndexPath(row: (menuCell?.selectedIndexPath?.row ?? 0), section: 0)
@@ -215,7 +215,7 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
         else if tabIndex+1 == indexPath.row {
             var contentHeight = contentViewHeight()
             if contentHeight <= 0 { contentHeight = 200 }
-
+            
             return contentHeight
         }
         else {
