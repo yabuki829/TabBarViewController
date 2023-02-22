@@ -56,7 +56,7 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         self.preselectedIndexPath = self.selectedIndexPath
         
         DispatchQueue.main.async {
-            self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            self.collectionView.selectItem(at: self.selectedIndexPath, animated: true, scrollPosition: .left)
         }
     }
     
