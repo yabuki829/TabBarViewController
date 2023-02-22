@@ -63,9 +63,7 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
         self.views = views
       
         collectionView.reloadData()
-        DispatchQueue.main.async {
-            self.collectionView.selectItem(at: self.selectedIndexPath, animated: true, scrollPosition: .left)
-        }
+       
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.width, height: self.frame.height)
