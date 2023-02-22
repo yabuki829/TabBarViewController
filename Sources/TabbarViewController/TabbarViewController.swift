@@ -165,9 +165,8 @@ open class UITabbarViewController:UIViewController {
      一番最後のメニューセルを選択します
      */
     open func moveLastIndexPath(){
-        let indexPath = IndexPath(row: addViews().count - 2, section: 0)
+        let indexPath = IndexPath(row: addViews().count - 1, section: 0)
         menuCell?.selectedIndexPath = indexPath
-        // ベストは消したセルの一個前のセルを選択すること
         DispatchQueue.main.async {
             self.menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
         }
