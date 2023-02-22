@@ -41,6 +41,9 @@ open class UITabbarViewController:UIViewController {
     private var views = [UIView]()
     private var contents = [TabContent]()
     private var menuCell: MenuCell?
+    /// menucellのindexpathの初期値の設定
+    public var selectIndexPathOfMenuCell = IndexPath(row: 0, section: 0)
+    
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
     /// タブのスペースを設定
@@ -108,10 +111,11 @@ open class UITabbarViewController:UIViewController {
     open func reloadCollectionView(){
         tableView.reloadData()
     }
-    
-    open func reloadTabCell(_ tabindex:Int ,tabs: [TabTag],isScroltable:Bool = false){
+    ///メニューセルを更新する
+    open func reloadTabCell(tabs: [TabTag],isScroltable:Bool = false){
+       
         //menucellの情報を更新する
-        menuCell?.setting(tabindex, tabs: tabs, defalutText: defalultText, selectedText: selectedText, isScrollable: isScroltable, insets: contentInsets)
+        menuCell?.setting(self.tabIndex, tabs: tabs, defalutText: defalultText, selectedText: selectedText, isScrollable: isScroltable, insets: contentInsets)
         menuCell?.collectionView.reloadData()
     }
     
@@ -199,6 +203,7 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
             cell.delegate = self
             cell.selectionStyle = .none
             menuCell = cell
+            menuCell?.selectedIndexPath = self.selectIndexPathOfMenuCell
             return menuCell ?? MenuCell()
         }
         else if indexPath.row == tabIndex+1 {
