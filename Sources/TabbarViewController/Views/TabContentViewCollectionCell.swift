@@ -13,6 +13,7 @@ import UIKit
 public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate{
     static let identifier = "TabContentViewCell"
     var views = [UIView]()
+    public var selectedIndexPath = IndexPath(row: 0, section: 0)
     
     var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,6 +37,10 @@ public class TabContentViewCell:UITableViewCell,UICollectionViewDelegateFlowLayo
                                    left: contentView.leftAnchor, paddingLeft: 0,
                                    right: contentView.rightAnchor, paddingRight: 0,
                                    bottom: contentView.bottomAnchor, paddingBottom: 0)
+        
+        DispatchQueue.main.async {
+            self.collectionView.selectItem(at: self.selectedIndexPath, animated: true, scrollPosition: .left)
+        }
     }
     
     

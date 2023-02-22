@@ -209,7 +209,7 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
         else if indexPath.row == tabIndex+1 {
             contentCell = tableView.dequeueReusableCell(withIdentifier: TabContentViewCell.identifier, for: indexPath) as! TabContentViewCell
             contentCell.configure(views: views)
-            
+            contentCell.selectedIndexPath = self.selectIndexPathOfMenuCell
             return contentCell
         }
         
