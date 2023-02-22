@@ -132,10 +132,11 @@ open class UITabbarViewController:UIViewController {
     open func getSelectedTagIndex() -> Int{
         return menuCell?.selectedIndexPath?.row ?? 0
     }
-    
+    /**
+        メニュセルの０番目を選択します
+     */
     open func moveZeroIndexPath(){
         let indexPath = IndexPath(row: 0, section: 0)
-
         
         menuCell?.selectedIndexPath = indexPath
         // 前に選択していたcellに移動
@@ -147,6 +148,9 @@ open class UITabbarViewController:UIViewController {
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at: indexPath , at: .centeredHorizontally, animated: true)
     }
+    /**
+     最後に選択したメニューセルを選択します
+     */
     open func moveIndexPath(){
         let nowIndexPath = IndexPath(row: (menuCell?.selectedIndexPath?.row ?? 0), section: 0)
         DispatchQueue.main.async {
@@ -156,8 +160,28 @@ open class UITabbarViewController:UIViewController {
         contentCell.configure(views: views)
         contentCell.collectionView.scrollToItem(at: nowIndexPath , at: .centeredHorizontally, animated: true)
     }
+    
+    /**
+     一番最後のメニューセルを選択します
+     */
     open func moveLastIndexPath(){
         let indexPath = IndexPath(row: addViews().count - 2, section: 0)
+        menuCell?.selectedIndexPath = indexPath
+        // ベストは消したセルの一個前のセルを選択すること
+        DispatchQueue.main.async {
+            self.menuCell?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        }
+        contentCell.configure(views: views)
+        contentCell.collectionView.scrollToItem(at:indexPath , at: .centeredHorizontally, animated: true)
+    }
+    /**
+     任意のメニューセルを選択します
+     */
+    open func moveSomeIndex(index:Int){
+        if index > addViews().count {
+          print("moveSomeIndexを使うときはindexの数をaddViews.count以上にしてください")
+        }
+        let indexPath = IndexPath(row: index, section: 0)
         menuCell?.selectedIndexPath = indexPath
         // ベストは消したセルの一個前のセルを選択すること
         DispatchQueue.main.async {
