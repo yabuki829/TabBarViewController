@@ -45,10 +45,10 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
         contentView.addSubview(collectionView)
        
         collectionView.register(TabCell.self, forCellWithReuseIdentifier: TabCell.identifier)
-        collectionView.constraints(top: contentView.topAnchor, paddingTop: 10,
+        collectionView.constraints(top: contentView.topAnchor, paddingTop: 0,
                                    left: contentView.leftAnchor, paddingLeft: 0,
                                    right: contentView.rightAnchor, paddingRight: 0,
-                                   bottom: contentView.bottomAnchor, paddingBottom: 10)
+                                   bottom: contentView.bottomAnchor, paddingBottom: 0)
         
        
         let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
