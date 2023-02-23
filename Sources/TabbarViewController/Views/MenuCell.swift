@@ -51,9 +51,10 @@ class MenuCell:UITableViewCell ,UICollectionViewDataSource, UICollectionViewDele
                                    bottom: contentView.bottomAnchor, paddingBottom: 0)
         
        
-//        let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
+        let indexPath:IndexPath = NSIndexPath(row: 0, section: 0) as IndexPath
         // 一個前に選択していた選択肢を覚えておく
-        self.preselectedIndexPath = self.selectedIndexPath
+        self.selectedIndexPath = indexPath
+        self.preselectedIndexPath = indexPath
         
         DispatchQueue.main.async {
             self.collectionView.selectItem(at: self.selectedIndexPath, animated: true, scrollPosition: .left)

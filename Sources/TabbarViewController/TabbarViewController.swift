@@ -42,7 +42,7 @@ open class UITabbarViewController:UIViewController {
     private var contents = [TabContent]()
     private var menuCell: MenuCell?
     /// menucellのindexpathの初期値の設定
-    public var selectIndexPathOfMenuCell = IndexPath(row: 0, section: 0)
+    
     
     //タブにiconが設定されてるかどうか
     private var isTabIconImage = false
@@ -203,13 +203,13 @@ extension UITabbarViewController:UITableViewDelegate,UITableViewDataSource {
             cell.delegate = self
             cell.selectionStyle = .none
             menuCell = cell
-            menuCell?.selectedIndexPath = self.selectIndexPathOfMenuCell
+//            menuCell?.selectedIndexPath = self.selectIndexPathOfMenuCell
             return menuCell ?? MenuCell()
         }
         else if indexPath.row == tabIndex+1 {
             contentCell = tableView.dequeueReusableCell(withIdentifier: TabContentViewCell.identifier, for: indexPath) as! TabContentViewCell
             contentCell.configure(views: views)
-            contentCell.selectedIndexPath = self.selectIndexPathOfMenuCell
+//            contentCell.selectedIndexPath = self.selectIndexPathOfMenuCell
             return contentCell
         }
         
