@@ -27,7 +27,8 @@ open class UITabbarViewController:UIViewController {
         let tableview = UITableView()
         return tableview
     }()
-   
+    
+    public var tableViewBottomConstraint = NSLayoutConstraint()
     /// タブの位置
     private var tabIndex = 0
     private var tabs = [TabTag]()
@@ -52,11 +53,20 @@ open class UITabbarViewController:UIViewController {
         super.viewDidLoad()
         
         view.addSubview(tableView)
-        tableView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0,
-                    left: view.safeAreaLayoutGuide.leftAnchor, paddingLeft: 0,
-                    right: view.safeAreaLayoutGuide.rightAnchor, paddingRight: 0,
-                    bottom: view.bottomAnchor, paddingBottom: 0)
         
+//        tableView.constraints(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0,
+//                    left: view.safeAreaLayoutGuide.leftAnchor, paddingLeft: 0,
+//                    right: view.safeAreaLayoutGuide.rightAnchor, paddingRight: 0,
+//                    bottom: view.bottomAnchor, paddingBottom: 0)
+        
+        
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant:0).isActive = true
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant:400)
+        tableViewBottomConstraint.isActive = true
         
         settingCollectionView()
         
