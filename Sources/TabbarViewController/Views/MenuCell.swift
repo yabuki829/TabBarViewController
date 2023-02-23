@@ -244,10 +244,11 @@ class TabCell:UICollectionViewCell{
         contentView.isUserInteractionEnabled = false
         contentView.addSubview(titleLabel)
         contentView.addSubview(titleButton)
-        titleLabel.constraints(top: contentView.topAnchor, paddingTop: 5,
+        titleLabel.constraints(top: contentView.topAnchor, paddingTop: 0,
                           left: contentView.leftAnchor, paddingLeft: 0,
                           right: contentView.rightAnchor, paddingRight: 0,
-                          bottom: contentView.bottomAnchor, paddingBottom: 5)
+                          bottom: contentView.bottomAnchor, paddingBottom: 0)
+        
         titleButton.constraints(top: contentView.topAnchor, paddingTop: 0,
                           left: contentView.leftAnchor, paddingLeft: 0,
                           right: contentView.rightAnchor, paddingRight: 0,
